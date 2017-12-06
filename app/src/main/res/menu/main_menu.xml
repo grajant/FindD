@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:checked="true"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/maps"
+            android:icon="@drawable/ic_place_black_24px"
+            android:title="Mapa" />
+        <item
+            android:id="@+id/filter"
+            android:icon="@drawable/ic_filter_list_black_24px"
+            android:title="Encuentra tu discoteca" />
+   <!--     <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />-->
+    </group>
+
+
+    <item android:title="Perfil">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/profile"
+                    android:icon="@drawable/ic_menu_share"
+                    android:title="Mi Perfil" />
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="Cerrar Sesión" />
+
+            </group>
+        </menu>
+    </item>
+
+</menu>
