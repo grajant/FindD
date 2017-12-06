@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FindD.iml" filepath="$PROJECT_DIR$/FindD.iml" />
+      <module fileurl="file://C:\Users\RPMIngenieros\StudioProjects\FindD_new\FindD.iml" filepath="C:\Users\RPMIngenieros\StudioProjects\FindD_new\FindD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FindD_new.iml" filepath="$PROJECT_DIR$/.idea/FindD_new.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.find_d.findd.InfoActivity">
+
+ <TextView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:hint="nombre"
+     android:id="@+id/tNombre"/>
+
+ <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dirección"
+        android:id="@+id/tDireccion"/>
+
+ <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Teléfono"
+        android:id="@+id/tTelefono"/>
+
+ <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="música"
+        android:id="@+id/tMusica"/>
+
+ <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Presupuesto"
+        android:id="@+id/tPresupuesto"/>
+</LinearLayout>

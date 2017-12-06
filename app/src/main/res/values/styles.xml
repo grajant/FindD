@@ -41,4 +41,27 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="RatingBarStyle" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:rating">5</item>
+        <item name="android:stepSize">0.5</item>
+        <item name="android:numStars">5</item>
+    </style>
+
+    <!--
+    style="?android:attr/ratingBarStyleSmall"
+                        android:id="@+id/rating_bar_0"
+                        android:rating="5"
+                        android:stepSize="0.2"
+                        android:numStars="5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="5dp"
+    -->
 </resources>

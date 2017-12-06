@@ -8,10 +8,23 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+
+
     <FrameLayout
-        android:id="@+id/activity_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></FrameLayout>
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/activity_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:theme="@style/ToolbarTheme"/>
+    </FrameLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -20,6 +33,10 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_drawer"
-        app:menu="@menu/main_menu" />
+        app:menu="@menu/main_menu"
+        app:theme="@style/NavigationViewTheme"
+        android:background="@color/md_blue_grey_900"
+        app:itemTextColor="@color/md_white_1000"
+        app:itemIconTint="@color/md_white_1000"/>
 
 </android.support.v4.widget.DrawerLayout>

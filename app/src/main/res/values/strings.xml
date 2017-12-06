@@ -8,8 +8,8 @@
     <string name="mCerrar">Cerrar</string>
     <string name="mPerfil">Perfil</string>
 
-    <string name="facebook_app_id">1615170741861426</string>
-    <string name="fb_login_protocol_scheme">fb1615170741861426</string>
+    <string name="facebook_app_id">200917797142542</string>
+    <string name="fb_login_protocol_scheme">fb200917797142542</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "87733744368",
+    "firebase_url": "https://first-fortress-188122.firebaseio.com",
+    "project_id": "first-fortress-188122",
+    "storage_bucket": "first-fortress-188122.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87733744368:android:24ebe0df74435d46",
+        "android_client_info": {
+          "package_name": "com.find_d.findd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87733744368-6klm533ocimf2iekuvqd86ar0a3veu6v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.find_d.findd",
+            "certificate_hash": "145be9c78c09b9460eaeeec38207bc38ec002526"
+          }
+        },
+        {
+          "client_id": "87733744368-38ha5q3976qftu9fumrgsr93usmhi2ka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANMwX2Uv_8cTkdY-p_3CUwSSY0zL3ix4s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87733744368-38ha5q3976qftu9fumrgsr93usmhi2ka.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

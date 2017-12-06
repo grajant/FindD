@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.LayoutRes;
@@ -26,6 +28,11 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 
 public class DrawerActivity extends AppCompatActivity {
@@ -67,7 +74,7 @@ public class DrawerActivity extends AppCompatActivity {
 
         /** Set menu depending on child **/
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        setMenu();
+        //setMenu();
         if (navigationView != null) {
             setupNavigationDrawerContent();
         }
@@ -86,7 +93,7 @@ public class DrawerActivity extends AppCompatActivity {
          */
         TextView email = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email_drawer);
         TextView username = (TextView) navigationView.getHeaderView(0).findViewById(R.id.user_drawer);
-        final ImageView profileImg = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.image_drawer);
+        final CircularImageView profileImg = navigationView.getHeaderView(0).findViewById(R.id.image_drawer);
 
         // Load preferences
         preferences = this.getSharedPreferences(Tags.TAG_PREFERENCES, Context.MODE_PRIVATE);
@@ -97,27 +104,35 @@ public class DrawerActivity extends AppCompatActivity {
          */
         int valor1 = preferences.getInt(Tags.LOGIN_OPTION, 0);
 
+        String sname=null,semail=null,sid=null;
+        Uri photoUrl=null;
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            sname = user.getDisplayName();
+            semail = user.getEmail();
+            sid = user.getUid();
+            photoUrl = user.getPhotoUrl();
+        }else {
+            logOut();
+        }
 
         /** Read data from shared preferences **/
         // Set name
-        String nameee = preferences.getString(Tags.TAG_NAME, "");
-        username.setText(preferences.getString(Tags.TAG_NAME, ""));
+        username.setText(sname);
         // Set email
-        email.setText(preferences.getString(Tags.TAG_EMAIL, ""));
+        email.setText(semail);
         // Create image from fb URL
         FetchImage fetchImage = new FetchImage(this, new FetchImage.AsyncResponse() {
             @Override
             public void processFinish(Bitmap bitmap) {
                 if (bitmap != null) {
-                    Resources res = getResources();
-                    RoundedBitmapDrawable roundBitmap = RoundedBitmapDrawableFactory
-                            .create(res, bitmap);
-                    roundBitmap.setCornerRadius(Math.max(bitmap.getWidth(), bitmap.getHeight()) / 2.0f);
-                    profileImg.setImageDrawable(roundBitmap);
+                    profileImg.setImageBitmap(bitmap);
                 }
             }
         });
-        fetchImage.execute(preferences.getString(Tags.TAG_URLIMG, ""));
+        fetchImage.execute(photoUrl.toString());
 
     }
 
@@ -135,7 +150,9 @@ public class DrawerActivity extends AppCompatActivity {
     protected void setMenu(){
         navigationView.inflateMenu(R.menu.main_menu);
     }
-
+    protected void setOriginalColorToolbar(){
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
+    }
     /**
      * Helper method that can be used by child classes to
      * specify that they don't want a {@link Toolbar}
@@ -168,42 +185,39 @@ public class DrawerActivity extends AppCompatActivity {
                         Handler handler = new Handler();
                         // Handle navigation view item clicks here.
                         //Intent intent;
+
                         switch (item.getItemId()) {
                             case R.id.home:
                                 fullLayout.closeDrawer(GravityCompat.START);
                                 if (!item.isChecked()) {
-                                    getSupportActionBar().setTitle("Inicio");
-                                    Tab2Fragment fragment  = new Tab2Fragment();
-                                    getSupportFragmentManager().beginTransaction().replace(R.id.containerView,fragment).commit();
+                                    intent = new Intent(DrawerActivity.this, MainActivity.class);
                                     item.setChecked(true);      // Start activity after some delay
+                                    handler.postDelayed(delay, 500);
                                 }
                                 break;
                             case R.id.maps:
                                 fullLayout.closeDrawer(GravityCompat.START);
                                 if (!item.isChecked()) {
-                                    getSupportActionBar().setTitle("Mapas");
-                                    MapsFragment fragment = new MapsFragment();
-                                    getSupportFragmentManager().beginTransaction().replace(R.id.containerView, fragment).commit();
+                                    intent = new Intent(DrawerActivity.this, MapActivity.class);
                                     item.setChecked(true);      // Start activity after some delay
+                                    handler.postDelayed(delay, 500);
                                 }
                                 break;
                             case R.id.filter:
                                 fullLayout.closeDrawer(GravityCompat.START);
                                 if (!item.isChecked()) {
-                                    getSupportActionBar().setTitle("Encuentra tu discoteca");
-                                    TabFragment fragment = new TabFragment();
-                                    getSupportFragmentManager().beginTransaction().replace(R.id.containerView, fragment).commit();
+                                    intent = new Intent(DrawerActivity.this, FilterActivity.class);
                                     item.setChecked(true);
+                                    handler.postDelayed(delay, 500);
                                 }
                                 break;
                             case R.id.profile:
                                 fullLayout.closeDrawer(GravityCompat.START);
                                 Log.d("Item check",String.valueOf(item.isChecked()));
                                 if (!item.isChecked()) {
-                                    getSupportActionBar().setTitle("Perfil");
-                                    PerfilFragment fragment = new PerfilFragment();
-                                    getSupportFragmentManager().beginTransaction().replace(R.id.containerView, fragment).commit();
+                                    intent = new Intent(DrawerActivity.this, PerfilActivity.class);
                                     item.setChecked(true);
+                                    handler.postDelayed(delay, 500);
                                 }
                                 break;
                             case R.id.logout:
@@ -214,6 +228,7 @@ public class DrawerActivity extends AppCompatActivity {
                                 break;
                         }
                         return true;
+
                     }
                 });
     }
@@ -227,17 +242,8 @@ public class DrawerActivity extends AppCompatActivity {
         }
     };
 
-    protected Intent putExtras(Class className){
-        Intent intent = new Intent(this, className);
-        intent.putExtra("username", extras.getString("username"));
-        intent.putExtra("email", extras.getString("email"));
-        return intent;
-    }
-
-    @Override
-    public void signOutRevokeAccess() {
-        intent = new Intent(DrawerActivity.this,WelcomeScreenActivity.class);
-        intent.putExtra("activity", "home");
+    private void logOut() {
+        Intent intent = new Intent(DrawerActivity.this,LoginActivity.class);
         startActivity(intent);
         finish();
     }
