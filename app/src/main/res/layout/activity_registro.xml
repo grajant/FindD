@@ -12,15 +12,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="0.7">
 
         <ImageView
             android:layout_width="400px"
             android:layout_height="400px"
-            android:src="@drawable/ic_account_circle_black_48dp"
+            android:src="@drawable/logo"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="69dp" />
+            android:layout_marginTop="30dp" />
     </RelativeLayout>
 
 
@@ -30,6 +30,33 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:layout_margin="15dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="@string/nombre"
+            android:id="@+id/eNombre"
+            android:inputType="textEmailAddress"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="@string/apellido"
+            android:id="@+id/eApellido"
+            android:inputType="textEmailAddress"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="@string/usuario"
+            android:id="@+id/eUsuario"
+            android:inputType="textEmailAddress"
+            />
 
         <EditText
             android:layout_width="match_parent"

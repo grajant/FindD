@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -40,6 +41,7 @@ import java.util.Arrays;
 public class LoginActivity extends AppCompatActivity {
 
     LoginButton loginButton;
+    TextView tRegistre;
     SignInButton signInButton;
     CallbackManager callbackManager;
     FirebaseAuth mAuth;
@@ -205,7 +207,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         super.onActivityResult(requestCode, resultCode, data);
-        if(optlog != 1){
+        if (requestCode == 1234 && resultCode == RESULT_OK){
+            goMainActivity();
+        }
+        else if(optlog != 1){
             //Login facebook
             callbackManager.onActivityResult(requestCode,resultCode,data);
         }

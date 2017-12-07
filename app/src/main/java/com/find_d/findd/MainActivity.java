@@ -1,10 +1,15 @@
 package com.find_d.findd;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -18,11 +23,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class MainActivity extends DrawerActivity {
 
     private ArrayList<Discotecas> list = new ArrayList<>();
     private TextView[] tNombre = new TextView[4];
     private RatingBar[] discoRatingBar = new RatingBar[4];
+    private ImageView iprimera, isegunda, itercera,icuarta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,10 @@ public class MainActivity extends DrawerActivity {
         tNombre[1] = findViewById(R.id.tSemana2);
         tNombre[2] = findViewById(R.id.tSemana3);
         tNombre[3] = findViewById(R.id.tSemana4);
+        iprimera = (ImageView) findViewById(R.id.iPrimera);
+        isegunda = (ImageView) findViewById(R.id.iSegunda);
+        itercera = (ImageView) findViewById(R.id.iTercera);
+        icuarta = (ImageView) findViewById(R.id.iCuarta);
 
     }
 
@@ -73,8 +85,19 @@ public class MainActivity extends DrawerActivity {
                                 postSnapshot.child("presupuesto").getValue().toString(),
                                 (float)5)
                         );
+                        FetchImage fetchImage = new FetchImage(getApplicationContext(), new FetchImage.AsyncResponse() {
+                            @Override
+                            public void processFinish(Bitmap bitmap) {
+                                if (bitmap != null) {
+                                    Resources res = getApplicationContext().getResources();
+                                    RoundedBitmapDrawable roundBitmap = RoundedBitmapDrawableFactory
+                                            .create(res, bitmap);
 
-
+                                    iprimera.setImageDrawable(roundBitmap);
+                                }
+                            }
+                        });
+                        fetchImage.execute(postSnapshot.child("URL").getValue().toString());
                     }
                     if ("oye bonita".compareToIgnoreCase(postSnapshot.getKey().toString()) == 0){
                         list.add(new Discotecas(postSnapshot.child("URL").getValue().toString(),
@@ -83,6 +106,19 @@ public class MainActivity extends DrawerActivity {
                                 postSnapshot.child("musica").getValue().toString(),
                                 postSnapshot.child("presupuesto").getValue().toString(),
                                 (float)3.5));
+                        FetchImage fetchImage = new FetchImage(getApplicationContext(), new FetchImage.AsyncResponse() {
+                            @Override
+                            public void processFinish(Bitmap bitmap) {
+                                if (bitmap != null) {
+                                    Resources res = getApplicationContext().getResources();
+                                    RoundedBitmapDrawable roundBitmap = RoundedBitmapDrawableFactory
+                                            .create(res, bitmap);
+
+                                    isegunda.setImageDrawable(roundBitmap);
+                                }
+                            }
+                        });
+                        fetchImage.execute(postSnapshot.child("URL").getValue().toString());
 
 
                     }
@@ -94,6 +130,20 @@ public class MainActivity extends DrawerActivity {
                                 postSnapshot.child("presupuesto").getValue().toString(),
                                 (float)4));
 
+                        FetchImage fetchImage = new FetchImage(getApplicationContext(), new FetchImage.AsyncResponse() {
+                            @Override
+                            public void processFinish(Bitmap bitmap) {
+                                if (bitmap != null) {
+                                    Resources res = getApplicationContext().getResources();
+                                    RoundedBitmapDrawable roundBitmap = RoundedBitmapDrawableFactory
+                                            .create(res, bitmap);
+
+                                    itercera.setImageDrawable(roundBitmap);
+                                }
+                            }
+                        });
+                        fetchImage.execute(postSnapshot.child("URL").getValue().toString());
+
 
                     }
                     if ("La ruana de juana".compareToIgnoreCase(postSnapshot.getKey().toString()) == 0){
@@ -103,6 +153,19 @@ public class MainActivity extends DrawerActivity {
                                 postSnapshot.child("musica").getValue().toString(),
                                 postSnapshot.child("presupuesto").getValue().toString(),
                                 (float)3));
+                        FetchImage fetchImage = new FetchImage(getApplicationContext(), new FetchImage.AsyncResponse() {
+                            @Override
+                            public void processFinish(Bitmap bitmap) {
+                                if (bitmap != null) {
+                                    Resources res = getApplicationContext().getResources();
+                                    RoundedBitmapDrawable roundBitmap = RoundedBitmapDrawableFactory
+                                            .create(res, bitmap);
+
+                                    icuarta.setImageDrawable(roundBitmap);
+                                }
+                            }
+                        });
+                        fetchImage.execute(postSnapshot.child("URL").getValue().toString());
 
 
                     }

@@ -54,6 +54,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
+                    android:id="@+id/iPrimera"
                     android:background="@color/lightgray"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -65,8 +66,6 @@
                     android:id="@+id/tSemana1"/>
                 <RatingBar
                     style="@style/RatingBarStyle"
-                    android:maxHeight="50dp"
-                    android:padding="2dp"
                     android:id="@+id/rating_bar_0"/>
 
             </LinearLayout>
@@ -84,6 +83,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
+                    android:id="@+id/iSegunda"
                     android:background="@color/lightgray"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -121,6 +121,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:id="@+id/iTercera"
                     android:background="@color/lightgray"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -151,6 +152,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:id="@+id/iCuarta"
                     android:background="@color/lightgray"/>
                 <TextView
                     android:layout_width="match_parent"

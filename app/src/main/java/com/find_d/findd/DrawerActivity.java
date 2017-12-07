@@ -124,15 +124,18 @@ public class DrawerActivity extends AppCompatActivity {
         // Set email
         email.setText(semail);
         // Create image from fb URL
-        FetchImage fetchImage = new FetchImage(this, new FetchImage.AsyncResponse() {
-            @Override
-            public void processFinish(Bitmap bitmap) {
-                if (bitmap != null) {
-                    profileImg.setImageBitmap(bitmap);
+        if (photoUrl != null){
+            FetchImage fetchImage = new FetchImage(this, new FetchImage.AsyncResponse() {
+                @Override
+                public void processFinish(Bitmap bitmap) {
+                    if (bitmap != null) {
+                        profileImg.setImageBitmap(bitmap);
+                    }
                 }
-            }
-        });
-        fetchImage.execute(photoUrl.toString());
+            });
+            fetchImage.execute(photoUrl.toString());
+        }
+
 
     }
 
@@ -214,6 +217,7 @@ public class DrawerActivity extends AppCompatActivity {
                             case R.id.profile:
                                 fullLayout.closeDrawer(GravityCompat.START);
                                 Log.d("Item check",String.valueOf(item.isChecked()));
+
                                 if (!item.isChecked()) {
                                     intent = new Intent(DrawerActivity.this, PerfilActivity.class);
                                     item.setChecked(true);

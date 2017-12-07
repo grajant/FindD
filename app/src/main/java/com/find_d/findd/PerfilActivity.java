@@ -9,6 +9,9 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +31,10 @@ public class PerfilActivity extends DrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
+        SubMenu subMenu = navigationView.getMenu().getItem(3).getSubMenu();
+        MenuItem menuItem = subMenu.getItem(0);
+        menuItem.setChecked(true);
+
         tNombre = findViewById(R.id.tNombre);
         tContrasena = findViewById(R.id.tContrasena);
         imgProfile = findViewById(R.id.profileImg);
@@ -43,16 +50,18 @@ public class PerfilActivity extends DrawerActivity {
         }
         tNombre.setText(sname);   // User name
         tContrasena.setText(semail);  // User email
-
-        FetchImage fetchImage = new FetchImage(this, new FetchImage.AsyncResponse() {
-            @Override
-            public void processFinish(Bitmap bitmap) {
-                if (bitmap != null) {
-                    imgProfile.setImageBitmap(bitmap);
+        if (photoUrl != null){
+            FetchImage fetchImage = new FetchImage(this, new FetchImage.AsyncResponse() {
+                @Override
+                public void processFinish(Bitmap bitmap) {
+                    if (bitmap != null) {
+                        imgProfile.setImageBitmap(bitmap);
+                    }
                 }
-            }
-        });
-        fetchImage.execute(photoUrl.toString());
+            });
+            fetchImage.execute(photoUrl.toString());
+        }
+
 
         // Nombre y color Toolbar
         getSupportActionBar().setTitle("Perfil");
