@@ -23,7 +23,7 @@ public class ListaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragmentj
+        // Inflate the layout for this fragmentjk
         return inflater.inflate(R.layout.fragment_nearby_disco, container, false);
     }
 
