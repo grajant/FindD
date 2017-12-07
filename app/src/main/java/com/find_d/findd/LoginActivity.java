@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     EditText eCorreo, eContrasena;
-    String Correo, Contrasena, personName, personGivenName, personFamilyName, personEmail, personId;
     Uri personPhoto;
     int RC_SIGN_IN = 5678;
     String correoR, contrasenaR;
@@ -76,6 +75,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        /** Load Edit Text **/
+        eCorreo = findViewById(R.id.edit_text_email);
+        eContrasena = findViewById(R.id.edit_text_password);
 
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);
@@ -256,26 +258,26 @@ public class LoginActivity extends AppCompatActivity {
     public void registrese(View view) {
         Intent intent = new Intent(LoginActivity.this, RegistroActivity.class);
         startActivityForResult(intent, 1234);
-        Toast.makeText(LoginActivity.this,"ojalá funcione", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(LoginActivity.this,"ojalá funcione", Toast.LENGTH_SHORT).show();
     }
 
-    public void iniciar(View view) {
+    public void onLoginButtonClicked(View view) {
 
-        correoR = prefs.getString("correo", "");
-        contrasenaR = prefs.getString("contrasena", "");
-
-        Correo = eCorreo.getText().toString();
-        Contrasena = eContrasena.getText().toString();
-        optlog = 3;
-
-
-        if(Correo.equals("") && Contrasena.equals("")){
-            Toast.makeText(this, "Ingrese datos", Toast.LENGTH_SHORT).show();
-
-        } else if (Correo.equals(correoR) && Contrasena.equals(contrasenaR)){
-            goMainActivity();
-        } else {
-            Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-        }
+        mAuth.signInWithEmailAndPassword(eCorreo.getText().toString(), eContrasena.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            goMainActivity();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrecto",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }

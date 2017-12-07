@@ -2,6 +2,7 @@ package com.find_d.findd.Fragments;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.find_d.findd.Discotecas;
+import com.find_d.findd.Tags;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -62,16 +65,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        Bundle args = getArguments();
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(6.266953, -75.569111);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,16));
+        LatLng myPosition = new LatLng(args.getDouble(Tags.TAG_LAT), args.getDouble(Tags.TAG_LON));
+        mMap.addMarker(new MarkerOptions().position(myPosition).title("Posición actual"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPosition,14));
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     if(postSnapshot.child("Lat").exists() && postSnapshot.child("Lng").exists() && postSnapshot.child("direccion").exists()
                             && postSnapshot.child("telefono").exists() && postSnapshot.child("presupuesto").exists() && postSnapshot.child("musica").exists()) {
+
 
                         // Discotecas(String imageURL, String name, String dir, String tel, String music, String price)
                         discotecasList.add(new Discotecas(postSnapshot.child("URL").getValue().toString(),
@@ -116,6 +121,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+    }
+
+    private void drawCircle(LatLng dstLatLng, int size){
+        CircleOptions circleOptions = new CircleOptions()
+                .center(dstLatLng)
+                .strokeColor(Color.TRANSPARENT)
+                .strokeWidth(1)
+                .fillColor(Color.argb(100, 164, 171, 167))
+                .radius(size*10);
+        mMap.addCircle(circleOptions);
     }
 
     @Override

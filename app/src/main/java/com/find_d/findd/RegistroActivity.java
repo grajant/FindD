@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -65,9 +66,6 @@ public class RegistroActivity extends AppCompatActivity {
 
     public void registrar(View view) {
 
-
-
-
         correo = eCorreo.getText().toString();
         contrasena = eContrasena.getText().toString();
         contrasenaR = eRepcontrasena.getText().toString();
@@ -84,7 +82,9 @@ public class RegistroActivity extends AppCompatActivity {
         else if( !contrasena.equals(contrasenaR)){
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
         }
-
+        else if (contrasena.length() < 6){
+            Toast.makeText(this, "La contraseña debe contener mínimo 6 caracteres", Toast.LENGTH_SHORT).show();
+        }
         else if (!validarEmail(correo)) {
 
             Toast.makeText(this, "Email no válido", Toast.LENGTH_SHORT).show();
@@ -109,13 +109,11 @@ public class RegistroActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
 
                                 FirebaseUser user = mAuth.getCurrentUser();
-
                                 updateUI(user, intent);
-                                //crear_tabla(user);
                             } else {
                                 // If sign in fails, display a message to the user.
 
-                                //Toast.makeText(RegistroActivity.this, "Authentication failed.",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegistroActivity.this, "Ya existe el usuario",Toast.LENGTH_SHORT).show();
                                 updateUI(null, intent);
                             }
 
@@ -133,14 +131,22 @@ public class RegistroActivity extends AppCompatActivity {
 
     }
 
-    private void updateUI(FirebaseUser user, Intent intent) {
+    private void updateUI(FirebaseUser user, final Intent intent) {
         if (user != null){
-            setResult(RESULT_OK, intent);
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(nombre+apellido)
+                    .build();
+            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            });
 
-            finish();
         }
         else {
-            Toast.makeText(RegistroActivity.this, "Authentication failed. Update", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegistroActivity.this, "Falló el registro.", Toast.LENGTH_SHORT).show();
         }
     }
 
