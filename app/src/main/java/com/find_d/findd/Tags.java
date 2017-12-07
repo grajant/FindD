@@ -12,6 +12,7 @@ public class Tags {
     public final static String TAG_PREFERENCES = "MisPreferencias";
     public final static String TAG_PASSWORD = "password";
     public final static String TAG_KEY = "key";
+    public static final String TAG_DISCO = "disco";
     public static final String TAG_LAT = "lat";
     public static final String TAG_LON = "lon";
 }

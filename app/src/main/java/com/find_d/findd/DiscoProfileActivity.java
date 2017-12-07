@@ -28,7 +28,7 @@ public class DiscoProfileActivity extends AppCompatActivity {
         iFoto = (ImageView) findViewById(R.id.iFotodisco);
         tDiscoDescripcion = (TextView) findViewById(R.id.tDescripcion);
 
-        discoteca = (Discotecas)getIntent().getSerializableExtra("marker_data");
+        discoteca = (Discotecas)getIntent().getSerializableExtra(Tags.TAG_DISCO);
 
         tInfo.setText(discoteca.getName()+"\n"+discoteca.getPrice());
 

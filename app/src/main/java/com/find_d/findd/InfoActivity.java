@@ -64,7 +64,7 @@ public class InfoActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(InfoActivity.this, DiscoProfileActivity.class);
-                    intent.putExtra("marker_data", discoteca);
+                    intent.putExtra(Tags.TAG_DISCO, discoteca);
                     startActivity(intent);
 
                 }
