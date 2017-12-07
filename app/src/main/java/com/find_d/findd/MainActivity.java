@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,11 +64,6 @@ public class MainActivity extends DrawerActivity {
         itercera = (ImageView) findViewById(R.id.iTercera);
         icuarta = (ImageView) findViewById(R.id.iCuarta);
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         /**
          * Lee la base de datos y toma 4 {@link Discotecas}
          */
@@ -194,6 +190,16 @@ public class MainActivity extends DrawerActivity {
 
             }
         });
+
+    }
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //.makeText(this, "On Start", Toast.LENGTH_SHORT).show();
+
     }
 
     public void onDisco1Clicked(View view) {
@@ -218,5 +224,11 @@ public class MainActivity extends DrawerActivity {
         Intent intent = new Intent(MainActivity.this, DiscoProfileActivity.class);
         intent.putExtra(Tags.TAG_DISCO, list.get(3));
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Toast.makeText(this, "On Resume", Toast.LENGTH_SHORT).show();
     }
 }

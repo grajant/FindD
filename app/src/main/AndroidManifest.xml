@@ -60,7 +60,8 @@
         <activity android:name=".FilterActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".DiscotecasListActivity" />
-        <activity android:name=".DiscoProfileActivity" />
+        <activity android:name=".DiscoProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".InfoActivity"
             android:theme="@style/MyDialogTheme"/>
     </application>

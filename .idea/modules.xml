@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\glego\StudioProjects\FindD\.idea\FindD.iml" filepath="C:\Users\glego\StudioProjects\FindD\.idea\FindD.iml" />
       <module fileurl="file://C:\Users\RPMIngenieros\StudioProjects\FindD_new\FindD.iml" filepath="C:\Users\RPMIngenieros\StudioProjects\FindD_new\FindD.iml" />
+      <module fileurl="file://C:\Users\glego\StudioProjects\FindD\.idea\FindD.iml" filepath="C:\Users\glego\StudioProjects\FindD\.idea\FindD.iml" />
       <module fileurl="file://$PROJECT_DIR$/FindD_new.iml" filepath="$PROJECT_DIR$/FindD_new.iml" />
       <module fileurl="file://C:\Users\Daniela\AndroidStudioProjects\FindD\.idea\FindD_new.iml" filepath="C:\Users\Daniela\AndroidStudioProjects\FindD\.idea\FindD_new.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Daniela\AndroidStudioProjects\FindD\app\app.iml" filepath="C:\Users\Daniela\AndroidStudioProjects\FindD\app\app.iml" />
       <module fileurl="file://C:\Users\glego\StudioProjects\FindD\app\app.iml" filepath="C:\Users\glego\StudioProjects\FindD\app\app.iml" />
+      <module fileurl="file://C:\Users\Daniela\AndroidStudioProjects\FindD\app\app.iml" filepath="C:\Users\Daniela\AndroidStudioProjects\FindD\app\app.iml" />
     </modules>
   </component>
 </project>
